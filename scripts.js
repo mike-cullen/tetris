@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentRotation = 0
 
   console.log(theTetrominoes[0][0])
-
   //randomly select a Tetromino and its first rotation
   let random = Math.floor(Math.random()*theTetrominoes.length)
   let current = theTetrominoes[random][currentRotation]
@@ -69,16 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[currentPosition + index].style.backgroundColor = colors[random]
     })
   }
-
   //undraw the Tetromino
   function undraw() {
     current.forEach(index => {
       squares[currentPosition + index].classList.remove('tetromino')
       squares[currentPosition + index].style.backgroundColor = ''
-
     })
   }
-
   //assign functions to keyCodes
   function control(e) {
     if(e.keyCode === 37) {
@@ -92,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   document.addEventListener('keyup', control)
-
   //move down function
   function moveDown() {
     undraw()
@@ -100,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     draw()
     freeze()
   }
-
   //freeze function
   function freeze() {
     if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
@@ -116,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
       gameOver()
     }
   }
-
   //move the tetromino left, unless is at the edge or there is a blockage
   function moveLeft() {
     undraw()
@@ -127,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     draw()
   }
-
   //move the tetromino right, unless is at the edge or there is a blockage
   function moveRight() {
     undraw()
@@ -149,13 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
     current = theTetrominoes[random][currentRotation]
     draw()
   }
-
   //show up-next tetromino in mini-grid display
   const displaySquares = document.querySelectorAll('.mini-grid div')
   const displayWidth = 4
   const displayIndex = 0
-
-
   //the Tetrominos without rotations
   const upNextTetrominoes = [
     [1, displayWidth+1, displayWidth*2+1, 2], //lTetromino
@@ -164,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     [0, 1, displayWidth, displayWidth+1], //oTetromino
     [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] //iTetromino
   ]
-
   //display the shape in the mini-grid display
   function displayShape() {
     //remove any trace of a tetromino form the entire grid
@@ -177,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
       displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
     })
   }
-
   //add functionality to the button
   startBtn.addEventListener('click', () => {
     if (timerId) {
@@ -190,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
       displayShape()
     }
   })
-
   //add score
   function addScore() {
     for (let i = 0; i < 199; i +=width) {
@@ -210,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
   //game over
   function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
